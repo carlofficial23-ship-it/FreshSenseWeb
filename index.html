@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Fresh Sense</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f8f7;
+      color: #16302b;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+    }
+
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: 30px;
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-top: 6px;
+      color: #667a75;
+    }
+
+    .connection {
+      margin-top: 24px;
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+      background: #eeeeee;
+      font-weight: bold;
+    }
+
+    .connected {
+      background: #dff5e6;
+      color: #16723c;
+    }
+
+    .disconnected {
+      background: #ffe4e4;
+      color: #a72020;
+    }
+
+    .card {
+      background: #f6f9f8;
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 16px;
+    }
+
+    .label {
+      color: #71817d;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .value {
+      margin-top: 6px;
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    #resultCard {
+      text-align: center;
+      min-height: 160px;
+    }
+
+    #result {
+      font-size: 27px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    #resultDescription {
+      margin-top: 10px;
+      color: #5d6e69;
+      line-height: 1.4;
+    }
+
+    .fresh {
+      background: #dff7e7;
+      color: #14773b;
+    }
+
+    .warning {
+      background: #ffe1e1;
+      color: #a61919;
+    }
+
+    .scanning {
+      background: #fff4cf;
+      color: #866200;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 15px;
+      margin-top: 16px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #connectButton {
+      background: #146b59;
+      color: white;
+    }
+
+    #voiceButton {
+      background: #e9efed;
+      color: #173d35;
+    }
+
+    .message {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #8a9693;
+      text-align: center;
+      word-break: break-word;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <h1>Fresh Sense</h1>
+  <div class="subtitle">
+    Sense the Gas, Skip the Waste
+  </div>
+
+  <div id="connectionStatus"
+       class="connection disconnected">
+    Bluetooth Disconnected
+  </div>
+
+  <div class="card">
+    <div class="label">Selected Food</div>
+    <div id="food" class="value">---</div>
+  </div>
+
+  <div class="card">
+    <div class="label">Device Status</div>
+    <div id="status" class="value">
+      Waiting for Fresh Sense
+    </div>
+  </div>
+
+  <div id="resultCard" class="card">
+    <div class="label">Freshness Result</div>
+
+    <div id="result">
+      No result yet
+    </div>
+
+    <div id="resultDescription">
+      Connect Fresh Sense and begin a scan.
+    </div>
+  </div>
+
+  <button id="connectButton">
+    Connect Fresh Sense
+  </button>
+
+  <button id="voiceButton">
+    Enable Voice
+  </button>
+
+  <div class="message">
+    Last BLE message:
+    <span id="lastMessage">---</span>
+  </div>
+
+</div>
+
+
+<script>
+
+const SERVICE_UUID =
+  "12345678-1234-1234-1234-123456789abc";
+
+const CHARACTERISTIC_UUID =
+  "87654321-4321-4321-4321-cba987654321";
+
+
+let device = null;
+let characteristic = null;
+let voiceEnabled = false;
+
+
+// =====================================================
+// UI
+// =====================================================
+
+const connectionStatus =
+  document.getElementById("connectionStatus");
+
+const foodLabel =
+  document.getElementById("food");
+
+const statusLabel =
+  document.getElementById("status");
+
+const resultCard =
+  document.getElementById("resultCard");
+
+const resultLabel =
+  document.getElementById("result");
+
+const resultDescription =
+  document.getElementById("resultDescription");
+
+const lastMessage =
+  document.getElementById("lastMessage");
+
+
+// =====================================================
+// VOICE
+// =====================================================
+
+function speak(text) {
+
+  if (!voiceEnabled) {
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const speech =
+    new SpeechSynthesisUtterance(text);
+
+  speech.lang = "en-US";
+  speech.rate = 0.9;
+  speech.pitch = 1.0;
+  speech.volume = 1.0;
+
+  window.speechSynthesis.speak(speech);
+}
+
+
+// =====================================================
+// ENABLE VOICE
+// =====================================================
+
+document
+  .getElementById("voiceButton")
+  .addEventListener("click", () => {
+
+    voiceEnabled = true;
+
+    speak(
+      "Fresh Sense voice notification enabled."
+    );
+
+    document.getElementById(
+      "voiceButton"
+    ).innerText = "Voice Enabled";
+  });
+
+
+// =====================================================
+// BLUETOOTH CONNECTION
+// =====================================================
+
+document
+  .getElementById("connectButton")
+  .addEventListener("click", connectFreshSense);
+
+
+async function connectFreshSense() {
+
+  try {
+
+    statusLabel.innerText =
+      "Searching for Fresh Sense...";
+
+
+    device =
+      await navigator.bluetooth.requestDevice({
+        filters: [
+          {
+            name: "FreshSense"
+          }
+        ],
+
+        optionalServices: [
+          SERVICE_UUID
+        ]
+      });
+
+
+    device.addEventListener(
+      "gattserverdisconnected",
+      onDisconnected
+    );
+
+
+    statusLabel.innerText =
+      "Connecting...";
+
+
+    const server =
+      await device.gatt.connect();
+
+
+    const service =
+      await server.getPrimaryService(
+        SERVICE_UUID
+      );
+
+
+    characteristic =
+      await service.getCharacteristic(
+        CHARACTERISTIC_UUID
+      );
+
+
+    await characteristic
+      .startNotifications();
+
+
+    characteristic.addEventListener(
+      "characteristicvaluechanged",
+      handleBLEMessage
+    );
+
+
+    connectionStatus.innerText =
+      "Fresh Sense Connected";
+
+    connectionStatus.className =
+      "connection connected";
+
+
+    statusLabel.innerText =
+      "Device ready";
+
+
+    document.getElementById(
+      "connectButton"
+    ).innerText = "Connected";
+
+
+    // Read existing value
+    const initialValue =
+      await characteristic.readValue();
+
+
+    processMessage(
+      new TextDecoder().decode(
+        initialValue
+      )
+    );
+
+  }
+
+  catch (error) {
+
+    console.error(error);
+
+    connectionStatus.innerText =
+      "Connection Failed";
+
+    connectionStatus.className =
+      "connection disconnected";
+
+
+    statusLabel.innerText =
+      "Try connecting again";
+
+    alert(
+      "Fresh Sense connection failed: " +
+      error.message
+    );
+  }
+}
+
+
+// =====================================================
+// BLE MESSAGE EVENT
+// =====================================================
+
+function handleBLEMessage(event) {
+
+  const value =
+    event.target.value;
+
+  const message =
+    new TextDecoder()
+      .decode(value)
+      .trim();
+
+  processMessage(message);
+}
+
+
+// =====================================================
+// PROCESS FRESH SENSE MESSAGE
+// =====================================================
+
+function processMessage(message) {
+
+  console.log(
+    "FreshSense:",
+    message
+  );
+
+
+  lastMessage.innerText =
+    message;
+
+
+  // --------------------------------------------------
+  // READY
+  // --------------------------------------------------
+
+  if (
+    message ===
+    "FRESHSENSE_READY"
+  ) {
+
+    statusLabel.innerText =
+      "Fresh Sense ready";
+
+    return;
+  }
+
+
+  // --------------------------------------------------
+  // CHICKEN SELECTED
+  // --------------------------------------------------
+
+  if (
+    message ===
+    "FOOD_SELECTED:chicken"
+  ) {
+
+    foodLabel.innerText =
+      "Chicken";
+
+    statusLabel.innerText =
+      "Place on empty container";
+
+    resetResult();
+
+    return;
+  }
+
+
+  // --------------------------------------------------
+  // BREAD SELECTED
+  // --------------------------------------------------
+
+  if (
+    message ===
+    "FOOD_SELECTED:bread"
+  ) {
+
+    foodLabel.innerText =
+      "Bread";
+
+    statusLabel.innerText =
+      "Place on empty container";
+
+    resetResult();
+
+    return;
+  }
+
+
+  // --------------------------------------------------
+  // BASELINE COMPLETE
+  // --------------------------------------------------
+
+  if (
+    message ===
+    "BASELINE_COMPLETE"
+  ) {
+
+    statusLabel.innerText =
+      "Baseline complete - insert food";
+
+    resultCard.className =
+      "card scanning";
+
+    resultLabel.innerText =
+      "Baseline Complete";
+
+    resultDescription.innerText =
+      "Insert the selected food and begin the food scan.";
+
+    speak(
+      "Baseline complete. Please insert the food sample."
+    );
+
+    return;
+  }
+
+
+  // --------------------------------------------------
+  // FRESH
+  // --------------------------------------------------
+
+  if (
+    message ===
+    "FRESH"
+  ) {
+
+    statusLabel.innerText =
+      "Scan complete";
+
+    resultCard.className =
+      "card fresh";
+
+    resultLabel.innerText =
+      "FRESH";
+
+    resultDescription.innerText =
+      "Fresh Sense detected a pattern closer to the fresh calibration reference.";
+
+    speak(
+      "Fresh Sense indicates that the food is fresh."
+    );
+
+    return;
+  }
+
+
+  // --------------------------------------------------
+  // HIGH SPOILAGE
+  // --------------------------------------------------
+
+  if (
+    message ===
+    "HIGH_SPOILAGE_RESPONSE"
+  ) {
+
+    statusLabel.innerText =
+      "Scan complete";
+
+    resultCard.className =
+      "card warning";
+
+    resultLabel.innerText =
+      "HIGH SPOILAGE RESPONSE";
+
+    resultDescription.innerText =
+      "Fresh Sense detected a strong spoilage-related sensor response.";
+
+    speak(
+      "Warning. Fresh Sense detected a high spoilage response. Do not consume the food."
+    );
+
+    return;
+  }
+
+
+  // --------------------------------------------------
+  // OTHER MESSAGE
+  // --------------------------------------------------
+
+  statusLabel.innerText =
+    message;
+}
+
+
+// =====================================================
+// RESET RESULT
+// =====================================================
+
+function resetResult() {
+
+  resultCard.className =
+    "card";
+
+  resultLabel.innerText =
+    "Waiting for scan";
+
+  resultDescription.innerText =
+    "Fresh Sense is ready to begin.";
+}
+
+
+// =====================================================
+// DISCONNECTED
+// =====================================================
+
+function onDisconnected() {
+
+  connectionStatus.innerText =
+    "Bluetooth Disconnected";
+
+  connectionStatus.className =
+    "connection disconnected";
+
+  statusLabel.innerText =
+    "Fresh Sense disconnected";
+
+  document.getElementById(
+    "connectButton"
+  ).innerText =
+    "Reconnect Fresh Sense";
+}
+
+</script>
+
+</body>
+</html>
