@@ -12,6 +12,7 @@
 
 <title>Fresh Sense</title>
 
+
 <style>
 
 * {
@@ -24,149 +25,334 @@
     sans-serif;
 }
 
+
 body {
+
   margin: 0;
-  background: #eef7f4;
-  color: #16352e;
-  padding: 16px;
-  display: flex;
-  justify-content: center;
+
+  background:
+    #eef7f4;
+
+  color:
+    #16352e;
+
+  padding:
+    16px;
+
+  display:
+    flex;
+
+  justify-content:
+    center;
 }
+
 
 .app {
-  width: 100%;
-  max-width: 430px;
+
+  width:
+    100%;
+
+  max-width:
+    430px;
 }
+
 
 .header {
-  text-align: center;
-  padding: 20px;
+
+  text-align:
+    center;
+
+  padding:
+    20px;
 }
+
 
 .header h1 {
-  margin: 0;
-  font-size: 34px;
+
+  margin:
+    0;
+
+  font-size:
+    34px;
 }
+
 
 .header p {
-  color: #657a74;
+
+  color:
+    #657a74;
 }
+
 
 .connection {
-  padding: 14px;
-  text-align: center;
-  border-radius: 15px;
-  font-weight: bold;
-  margin-bottom: 14px;
+
+  padding:
+    14px;
+
+  text-align:
+    center;
+
+  border-radius:
+    15px;
+
+  font-weight:
+    bold;
+
+  margin-bottom:
+    14px;
 }
+
 
 .disconnected {
-  background: #ffe4e4;
-  color: #992020;
+
+  background:
+    #ffe4e4;
+
+  color:
+    #992020;
 }
+
 
 .connected {
-  background: #dcf6e5;
-  color: #14713a;
+
+  background:
+    #dcf6e5;
+
+  color:
+    #14713a;
 }
+
 
 .card {
-  background: white;
-  border-radius: 18px;
-  padding: 17px;
-  margin-bottom: 13px;
+
+  background:
+    white;
+
+  border-radius:
+    18px;
+
+  padding:
+    17px;
+
+  margin-bottom:
+    13px;
 }
+
 
 .label {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #71837e;
+
+  font-size:
+    11px;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    1px;
+
+  color:
+    #71837e;
 }
+
 
 .value {
-  font-size: 22px;
-  font-weight: bold;
-  margin-top: 6px;
+
+  font-size:
+    22px;
+
+  font-weight:
+    bold;
+
+  margin-top:
+    6px;
 }
+
 
 .grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 13px;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:
+    10px;
+
+  margin-bottom:
+    13px;
 }
+
 
 .sensor {
-  background: white;
-  border-radius: 17px;
-  padding: 15px 8px;
-  text-align: center;
+
+  background:
+    white;
+
+  border-radius:
+    17px;
+
+  padding:
+    15px 8px;
+
+  text-align:
+    center;
 }
+
 
 .sensorValue {
-  font-size: 22px;
-  font-weight: bold;
-  margin-top: 6px;
+
+  font-size:
+    22px;
+
+  font-weight:
+    bold;
+
+  margin-top:
+    6px;
 }
+
 
 .progressOuter {
-  height: 12px;
-  background: #e1e9e6;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-top: 14px;
+
+  height:
+    12px;
+
+  background:
+    #e1e9e6;
+
+  border-radius:
+    10px;
+
+  overflow:
+    hidden;
+
+  margin-top:
+    14px;
 }
+
 
 #progressBar {
-  width: 0%;
-  height: 100%;
-  background: #176b59;
-  transition: width 0.3s;
+
+  width:
+    0%;
+
+  height:
+    100%;
+
+  background:
+    #176b59;
+
+  transition:
+    width 0.3s;
 }
+
 
 .resultCard {
-  text-align: center;
+
+  text-align:
+    center;
 }
+
 
 .fresh {
-  background: #dcf6e5;
-  color: #126a38;
+
+  background:
+    #dcf6e5;
+
+  color:
+    #126a38;
 }
+
 
 .warning {
-  background: #ffe1e1;
-  color: #9b2020;
+
+  background:
+    #ffe1e1;
+
+  color:
+    #9b2020;
 }
+
 
 .scanning {
-  background: #fff3cc;
+
+  background:
+    #fff3cc;
 }
+
 
 button {
-  width: 100%;
-  border: none;
-  border-radius: 14px;
-  padding: 15px;
-  margin-bottom: 10px;
-  font-size: 16px;
-  font-weight: bold;
+
+  width:
+    100%;
+
+  border:
+    none;
+
+  border-radius:
+    14px;
+
+  padding:
+    15px;
+
+  margin-bottom:
+    10px;
+
+  font-size:
+    16px;
+
+  font-weight:
+    bold;
 }
+
 
 #connectButton {
-  background: #146b59;
-  color: white;
+
+  background:
+    #146b59;
+
+  color:
+    white;
 }
+
 
 #voiceButton {
-  background: #dfece8;
-  color: #164f43;
+
+  background:
+    #dfece8;
+
+  color:
+    #164f43;
 }
 
+
 #firebaseStatus {
-  text-align: center;
-  margin: 12px;
-  font-size: 13px;
+
+  text-align:
+    center;
+
+  margin:
+    12px;
+
+  font-size:
+    13px;
+}
+
+
+.debug {
+
+  text-align:
+    center;
+
+  font-size:
+    11px;
+
+  color:
+    #71837e;
+
+  word-break:
+    break-word;
 }
 
 </style>
@@ -176,7 +362,9 @@ button {
 
 <body>
 
+
 <div class="app">
+
 
 <div class="header">
 
@@ -195,7 +383,9 @@ button {
   id="connectionStatus"
   class="connection disconnected"
 >
+
   Bluetooth Disconnected
+
 </div>
 
 
@@ -244,12 +434,14 @@ button {
     Waiting
   </div>
 
+
   <div class="progressOuter">
 
     <div id="progressBar">
     </div>
 
   </div>
+
 
   <p id="scanCount">
     0 / 5
@@ -260,76 +452,78 @@ button {
 
 <div class="grid">
 
-  <div class="sensor">
 
-    <div class="label">
-      BME680
-    </div>
+<div class="sensor">
 
-    <div
-      id="bmeValue"
-      class="sensorValue"
-    >
-      --
-    </div>
-
-    kΩ
-
+  <div class="label">
+    BME680
   </div>
 
-
-  <div class="sensor">
-
-    <div class="label">
-      MQ-137
-    </div>
-
-    <div
-      id="mqValue"
-      class="sensorValue"
-    >
-      --
-    </div>
-
-    V
-
+  <div
+    id="bmeValue"
+    class="sensorValue"
+  >
+    --
   </div>
 
+  kΩ
 
-  <div class="sensor">
+</div>
 
-    <div class="label">
-      Temperature
-    </div>
 
-    <div
-      id="tempValue"
-      class="sensorValue"
-    >
-      --
-    </div>
+<div class="sensor">
 
-    °C
-
+  <div class="label">
+    MQ-137
   </div>
 
-
-  <div class="sensor">
-
-    <div class="label">
-      Humidity
-    </div>
-
-    <div
-      id="humidityValue"
-      class="sensorValue"
-    >
-      --
-    </div>
-
-    %
-
+  <div
+    id="mqValue"
+    class="sensorValue"
+  >
+    --
   </div>
+
+  V
+
+</div>
+
+
+<div class="sensor">
+
+  <div class="label">
+    Temperature
+  </div>
+
+  <div
+    id="tempValue"
+    class="sensorValue"
+  >
+    --
+  </div>
+
+  °C
+
+</div>
+
+
+<div class="sensor">
+
+  <div class="label">
+    Humidity
+  </div>
+
+  <div
+    id="humidityValue"
+    class="sensorValue"
+  >
+    --
+  </div>
+
+  %
+
+</div>
+
 
 </div>
 
@@ -343,33 +537,60 @@ button {
     Freshness Assessment
   </div>
 
+
   <div
     id="result"
     class="value"
   >
+
     No Result
+
   </div>
 
+
   <p id="resultDescription">
+
     Complete a scan.
+
   </p>
 
 </div>
 
 
 <div id="firebaseStatus">
+
   Firebase: Waiting
+
 </div>
 
 
 <button id="connectButton">
+
   Connect Fresh Sense
+
 </button>
 
 
 <button id="voiceButton">
+
   Enable Voice
+
 </button>
+
+
+<div class="debug">
+
+  Last BLE message:
+
+  <br>
+
+  <span id="lastMessage">
+
+    ---
+
+  </span>
+
+</div>
 
 
 </div>
@@ -397,8 +618,13 @@ const CHARACTERISTIC_UUID =
 "87654321-4321-4321-4321-cba987654321";
 
 
-let device;
-let characteristic;
+let device =
+  null;
+
+
+let characteristic =
+  null;
+
 
 let voiceEnabled =
   false;
@@ -440,7 +666,7 @@ let session =
 
 
 // =====================================================
-// UI
+// ELEMENTS
 // =====================================================
 
 const connectionStatus =
@@ -448,65 +674,78 @@ document.getElementById(
   "connectionStatus"
 );
 
+
 const foodLabel =
 document.getElementById(
   "food"
 );
+
 
 const statusLabel =
 document.getElementById(
   "status"
 );
 
+
 const scanPhase =
 document.getElementById(
   "scanPhase"
 );
+
 
 const scanCount =
 document.getElementById(
   "scanCount"
 );
 
+
 const progressBar =
 document.getElementById(
   "progressBar"
 );
+
 
 const bmeValue =
 document.getElementById(
   "bmeValue"
 );
 
+
 const mqValue =
 document.getElementById(
   "mqValue"
 );
+
 
 const tempValue =
 document.getElementById(
   "tempValue"
 );
 
+
 const humidityValue =
 document.getElementById(
   "humidityValue"
 );
+
 
 const resultCard =
 document.getElementById(
   "resultCard"
 );
 
+
 const resultLabel =
 document.getElementById(
   "result"
 );
 
+
 const resultDescription =
 document.getElementById(
   "resultDescription"
 );
+
 
 const firebaseStatus =
 document.getElementById(
@@ -514,14 +753,30 @@ document.getElementById(
 );
 
 
+const lastMessage =
+document.getElementById(
+  "lastMessage"
+);
+
+
 // =====================================================
 // VOICE
 // =====================================================
 
-function speak(text) {
+function speak(
+  text
+) {
 
   if (
     !voiceEnabled
+  ) {
+
+    return;
+  }
+
+
+  if (
+    !window.speechSynthesis
   ) {
 
     return;
@@ -589,6 +844,18 @@ async function connectFreshSense() {
 
   try {
 
+    if (
+      !navigator.bluetooth
+    ) {
+
+      alert(
+        "Please open Fresh Sense using Bluefy."
+      );
+
+      return;
+    }
+
+
     device =
 
       await navigator.bluetooth
@@ -602,6 +869,28 @@ async function connectFreshSense() {
         ]
 
       });
+
+
+    device.addEventListener(
+
+      "gattserverdisconnected",
+
+      function() {
+
+        connectionStatus.innerText =
+          "Bluetooth Disconnected";
+
+
+        connectionStatus.className =
+          "connection disconnected";
+
+
+        statusLabel.innerText =
+          "Disconnected";
+
+      }
+
+    );
 
 
     const server =
@@ -666,11 +955,27 @@ async function connectFreshSense() {
     statusLabel.innerText =
       "Device Ready";
 
+
+    document
+    .getElementById(
+      "connectButton"
+    )
+    .innerText =
+      "Connected ✓";
+
   }
+
 
   catch(error) {
 
+    console.error(
+      error
+    );
+
+
     alert(
+      "Bluetooth error: "
+      +
       error.message
     );
   }
@@ -678,7 +983,7 @@ async function connectFreshSense() {
 
 
 // =====================================================
-// PROCESS BLE
+// PROCESS BLE MESSAGE
 // =====================================================
 
 function processMessage(
@@ -686,11 +991,18 @@ function processMessage(
 ) {
 
   console.log(
+    "BLE:",
     message
   );
 
 
-  // SENSOR READING
+  lastMessage.innerText =
+    message;
+
+
+  // =================================================
+  // SENSOR TELEMETRY
+  // =====================================================
 
   if (
     message.startsWith(
@@ -702,12 +1014,22 @@ function processMessage(
       message.split("|");
 
 
+    if (
+      p.length < 7
+    ) {
+
+      return;
+    }
+
+
     const phase =
       p[1];
 
 
     const number =
-      Number(p[2]);
+      Number(
+        p[2]
+      );
 
 
     const reading = {
@@ -716,16 +1038,24 @@ function processMessage(
         number,
 
       bmeGas_kOhm:
-        Number(p[3]),
+        Number(
+          p[3]
+        ),
 
       mqAO_V:
-        Number(p[4]),
+        Number(
+          p[4]
+        ),
 
       temperature:
-        Number(p[5]),
+        Number(
+          p[5]
+        ),
 
       humidity:
-        Number(p[6])
+        Number(
+          p[6]
+        )
 
     };
 
@@ -743,9 +1073,17 @@ function processMessage(
 
       scanPhase.innerText =
         "Baseline Scan";
+
+
+      statusLabel.innerText =
+        "Measuring empty container";
     }
 
-    else {
+
+    else if (
+      phase ===
+      "FOOD"
+    ) {
 
       session.food[
         number - 1
@@ -755,6 +1093,10 @@ function processMessage(
 
       scanPhase.innerText =
         "Food Scan";
+
+
+      statusLabel.innerText =
+        "Measuring food";
     }
 
 
@@ -777,19 +1119,19 @@ function processMessage(
 
 
     bmeValue.innerText =
-      p[3];
+      reading.bmeGas_kOhm;
 
 
     mqValue.innerText =
-      p[4];
+      reading.mqAO_V;
 
 
     tempValue.innerText =
-      p[5];
+      reading.temperature;
 
 
     humidityValue.innerText =
-      p[6];
+      reading.humidity;
 
 
     resultCard.className =
@@ -800,7 +1142,9 @@ function processMessage(
   }
 
 
-  // CHICKEN
+  // =================================================
+  // FOOD SELECT
+  // =====================================================
 
   if (
     message ===
@@ -826,8 +1170,6 @@ function processMessage(
   }
 
 
-  // BREAD
-
   if (
     message ===
     "FOOD_SELECTED:bread"
@@ -852,6 +1194,10 @@ function processMessage(
   }
 
 
+  // =================================================
+  // BASELINE
+  // =====================================================
+
   if (
     message ===
     "BASELINE_STARTED"
@@ -859,6 +1205,10 @@ function processMessage(
 
     statusLabel.innerText =
       "Measuring empty container";
+
+
+    scanPhase.innerText =
+      "Baseline Scan";
 
 
     return;
@@ -883,6 +1233,10 @@ function processMessage(
   }
 
 
+  // =================================================
+  // FOOD SCAN
+  // =====================================================
+
   if (
     message ===
     "FOOD_SCAN_STARTED"
@@ -890,6 +1244,10 @@ function processMessage(
 
     statusLabel.innerText =
       "Measuring food";
+
+
+    scanPhase.innerText =
+      "Food Scan";
 
 
     progressBar.style.width =
@@ -904,6 +1262,10 @@ function processMessage(
   }
 
 
+  // =================================================
+  // ANALYSIS
+  // =====================================================
+
   if (
     message ===
     "ANALYZING"
@@ -916,6 +1278,10 @@ function processMessage(
     return;
   }
 
+
+  // =================================================
+  // FRESH
+  // =====================================================
 
   if (
     message ===
@@ -938,6 +1304,10 @@ function processMessage(
       "Sensor pattern is closer to the prototype fresh reference.";
 
 
+    statusLabel.innerText =
+      "Scan Complete";
+
+
     speak(
       "Fresh Sense detected a fresh like sensor pattern."
     );
@@ -949,6 +1319,10 @@ function processMessage(
     return;
   }
 
+
+  // =================================================
+  // HIGH RESPONSE
+  // =====================================================
 
   if (
     message ===
@@ -971,12 +1345,61 @@ function processMessage(
       "Sensor pattern is closer to the prototype high spoilage reference.";
 
 
+    statusLabel.innerText =
+      "Scan Complete";
+
+
     speak(
       "Warning. Fresh Sense detected a high spoilage response."
     );
 
 
     uploadFirebase();
+
+
+    return;
+  }
+
+
+  if (
+    message ===
+    "SENSOR_ERROR"
+  ) {
+
+    resultCard.className =
+      "card resultCard warning";
+
+
+    resultLabel.innerText =
+      "SENSOR ERROR";
+
+
+    statusLabel.innerText =
+      "Please repeat scan";
+
+
+    return;
+  }
+
+
+  if (
+    message ===
+    "NEW_TEST"
+  ) {
+
+    session =
+      newSession();
+
+
+    resetDisplay();
+
+
+    foodLabel.innerText =
+      "---";
+
+
+    statusLabel.innerText =
+      "Select Food";
 
 
     return;
@@ -993,15 +1416,22 @@ function average(
   key
 ) {
 
+  const valid =
+    list.filter(
+      Boolean
+    );
+
+
   if (
-    !list.length
+    valid.length ===
+    0
   ) {
 
     return 0;
   }
 
 
-  return list.reduce(
+  return valid.reduce(
 
     (
       sum,
@@ -1020,7 +1450,7 @@ function average(
 
   /
 
-  list.length;
+  valid.length;
 }
 
 
@@ -1031,7 +1461,6 @@ function average(
 function makeSummary() {
 
   const baseBME =
-
     average(
       session.baseline,
       "bmeGas_kOhm"
@@ -1039,7 +1468,6 @@ function makeSummary() {
 
 
   const foodBME =
-
     average(
       session.food,
       "bmeGas_kOhm"
@@ -1047,7 +1475,6 @@ function makeSummary() {
 
 
   const baseMQ =
-
     average(
       session.baseline,
       "mqAO_V"
@@ -1055,7 +1482,6 @@ function makeSummary() {
 
 
   const foodMQ =
-
     average(
       session.food,
       "mqAO_V"
@@ -1063,7 +1489,6 @@ function makeSummary() {
 
 
   const baseTemp =
-
     average(
       session.baseline,
       "temperature"
@@ -1071,7 +1496,6 @@ function makeSummary() {
 
 
   const foodTemp =
-
     average(
       session.food,
       "temperature"
@@ -1079,7 +1503,6 @@ function makeSummary() {
 
 
   const baseHumidity =
-
     average(
       session.baseline,
       "humidity"
@@ -1087,11 +1510,60 @@ function makeSummary() {
 
 
   const foodHumidity =
-
     average(
       session.food,
       "humidity"
     );
+
+
+  const bmePercentChange =
+
+    baseBME !== 0
+
+    ?
+
+    (
+      (
+        foodBME -
+        baseBME
+      )
+
+      /
+
+      baseBME
+
+      *
+      100
+    )
+
+    :
+
+    0;
+
+
+  const mqPercentChange =
+
+    baseMQ !== 0
+
+    ?
+
+    (
+      (
+        foodMQ -
+        baseMQ
+      )
+
+      /
+
+      baseMQ
+
+      *
+      100
+    )
+
+    :
+
+    0;
 
 
   return {
@@ -1101,29 +1573,16 @@ function makeSummary() {
         baseBME.toFixed(2)
       ),
 
+
     foodBME:
       Number(
         foodBME.toFixed(2)
       ),
 
+
     bmePercentChange:
       Number(
-
-        (
-          (
-            foodBME -
-            baseBME
-          )
-
-          /
-
-          baseBME
-
-          *
-          100
-
-        ).toFixed(2)
-
+        bmePercentChange.toFixed(2)
       ),
 
 
@@ -1141,22 +1600,7 @@ function makeSummary() {
 
     mqPercentChange:
       Number(
-
-        (
-          (
-            foodMQ -
-            baseMQ
-          )
-
-          /
-
-          baseMQ
-
-          *
-          100
-
-        ).toFixed(2)
-
+        mqPercentChange.toFixed(2)
       ),
 
 
@@ -1188,7 +1632,7 @@ function makeSummary() {
 
 
 // =====================================================
-// FIREBASE
+// FIREBASE UPLOAD
 // =====================================================
 
 async function uploadFirebase() {
@@ -1206,6 +1650,43 @@ async function uploadFirebase() {
     !session.result
   ) {
 
+    firebaseStatus.innerText =
+      "Firebase: Missing food/result";
+
+    return;
+  }
+
+
+  const baselineCount =
+    session.baseline
+    .filter(Boolean)
+    .length;
+
+
+  const foodCount =
+    session.food
+    .filter(Boolean)
+    .length;
+
+
+  if (
+    baselineCount !== 5 ||
+    foodCount !== 5
+  ) {
+
+    firebaseStatus.innerText =
+
+      "Firebase: Incomplete scan data "
+      +
+      baselineCount
+      +
+      "/5 + "
+      +
+      foodCount
+      +
+      "/5";
+
+
     return;
   }
 
@@ -1219,34 +1700,47 @@ async function uploadFirebase() {
     foodType:
       session.foodType,
 
+
     result:
       session.result,
+
 
     createdAt: {
       ".sv":
         "timestamp"
     },
 
+
     source:
       "Fresh Sense Bluefy Web App",
+
 
     scanIntervalSeconds:
       15,
 
+
     baseline:
       session.baseline,
+
 
     food:
       session.food,
 
+
     summary:
       makeSummary(),
+
 
     aiStatus:
       "pending",
 
+
     emailStatus:
-      "pending"
+      "pending",
+
+
+    retryCount:
+      0
 
   };
 
@@ -1303,9 +1797,11 @@ async function uploadFirebase() {
     ) {
 
       throw new Error(
+
         "HTTP "
         +
         response.status
+
       );
     }
 
@@ -1319,23 +1815,33 @@ async function uploadFirebase() {
 
 
     firebaseStatus.innerText =
-
       "Firebase Saved ✓";
 
 
     console.log(
-      "Firebase record:",
+
+      "Firebase record ID:",
+
       data.name
+
     );
 
   }
 
+
   catch(error) {
+
+    console.error(
+      error
+    );
+
 
     firebaseStatus.innerText =
 
       "Firebase Failed: "
+
       +
+
       error.message;
 
   }
@@ -1343,7 +1849,7 @@ async function uploadFirebase() {
 
 
 // =====================================================
-// RESET DISPLAY
+// RESET
 // =====================================================
 
 function resetDisplay() {
@@ -1360,6 +1866,22 @@ function resetDisplay() {
     "0%";
 
 
+  bmeValue.innerText =
+    "--";
+
+
+  mqValue.innerText =
+    "--";
+
+
+  tempValue.innerText =
+    "--";
+
+
+  humidityValue.innerText =
+    "--";
+
+
   resultCard.className =
     "card resultCard";
 
@@ -1368,11 +1890,17 @@ function resetDisplay() {
     "Waiting";
 
 
+  resultDescription.innerText =
+    "Complete a scan.";
+
+
   firebaseStatus.innerText =
     "Firebase: Waiting";
 }
 
 </script>
 
+
 </body>
+
 </html>
